@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        function getComputerChoice(){
+            const rock = 1;
+            const paper = 2;
+            const scissors = 3;
+            let random = Math.floor(Math.random() * 3) + 1;
+            if(random == 1){
+                return "rock"
+            }
+            if(random == 2){
+                return "paper"
+            }if(random == 3){
+                return "scissors"
+            }
+        }
+
+       
+
+        function getHumanChoice(){
+            let choice = prompt("Rock, Paper or Scissors")
+            if(choice.toUpperCase() == "ROCK"){
+                return "rock"
+            }if(choice.toUpperCase() == "PAPER"){
+                return "paper"
+            }if(choice.toUpperCase() == "SCISSORS"){
+                return "scissors"
+            }
+        }
+ 
+
+ let humanScore = 0
+ let computerScore = 0
+
+ function playRound(humanChoice, computerChoice){
+    if(humanChoice === computerChoice){
+        humanScore++
+        computerScore++
+        console.log("It's a tie you both picked",humanChoice,"-- Current Score:",humanScore,"-",computerScore)
+        
+    }else if(
+        (humanChoice === 'rock' && computerChoice === "scissors")||
+        (humanChoice === 'paper' && computerChoice ==='rock')||
+        (humanChoice === 'scissors' && computerChoice === 'paper')   
+    )
+    {
+    humanScore++;
+    console.log('You win:)',humanChoice,'beats',computerChoice,"-- Current Score:",humanScore,"-",computerScore)  
+}else{
+    computerScore++;
+    console.log('You lose:(',computerChoice,'beats',humanChoice,"-- Current Score:",humanScore,"-",computerScore) 
+   
+}
+ }
+
+ function playGame() {
+            // Reset scores for a new game
+            humanScore = 0;
+            computerScore = 0;
+
+            // Play 5 rounds
+            for (let i = 0; i < 5; i++) {
+                let humanChoice = getHumanChoice();
+                let computerChoice = getComputerChoice();
+                playRound(humanChoice, computerChoice);
+                
+            }
+
+            // Output the final scores
+            console.log("Final Scores - Human:",humanScore +" Computer: ",computerScore)
+
+        }
+
+        // Declare score variables outside functions so they can be reset by playGame
+        
+
+        // Start the game
+        playGame();
+   
+ 
+
+    </script>
+    
+</body>
+</html>
